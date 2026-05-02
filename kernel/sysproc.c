@@ -107,3 +107,18 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+// Implementation of the trace system call
+// Read the integer argument using argint()
+// Store the value in the current process's trace_mask 
+uint64
+sys_trace(void)
+{
+  int mask;
+
+  argint(0, &mask);
+ 
+  myproc()->trace_mask = mask;
+
+  return 0; 
+}
